@@ -16,7 +16,7 @@ O mais estranho foi quando instalei o Linux Mint e tinha o mesmo problema, pensa
 
 No meu caso já tenho os nomes corretos!
 
-Primeiro obte-mos o endereço mac das placas.
+Primeiro obtêm-se o endereço mac das placas.
 
 <i class="fa fa-terminal" aria-hidden="true">Terminal</i>
 
@@ -26,7 +26,7 @@ emanuelx@terminator ~ $ ifconfig | grep HWaddr
 
 ![Terminal](/assets/images/2016_08_19-terminal_placas__rede.jpg)
 
-Criamos um novo ficheiro, com as linhas em baixo, mas com o endereço mac que foi obtido anteriormente
+Criamos um novo ficheiro, com as linhas em baixo, mas com o endereço mac que foi obtido anteriormente.
 eth0 - ethernet
 wlan0 - wireless
 
@@ -41,4 +41,4 @@ SUBSYSTEM=="net", ACTION=="add", ATTR{address}=="74:d0:2b:10:af:d5", NAME="eth0"
 SUBSYSTEM=="net", ACTION=="add", ATTR{address}=="6c:71:d9:8a:1b:01", NAME="wlan0"
 ~~~
 
-Reiniciamos o pc, e fica o problema resolvido!
+Reiniciamos o pc e o problema fica resolvido!

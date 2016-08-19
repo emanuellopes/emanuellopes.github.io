@@ -29,6 +29,7 @@ title: Home
             <a class="post-tag">{{tag}}</a>
         {% endfor %}
         <div class="article-title"><a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></div>
+        <p>{{post.description}}</p>
       </article>
     {% endfor %}
   </div>

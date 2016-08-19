@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Remover \"Tearing\" do Linux Mint/Ubuntu!"
-description: "Como resolver o problema das linhas verticais, que se apresentam nos vídeos nas placas gráficas intel."
+description: "Como resolver o problema das linhas verticais, que se apresentam nos vídeos quando se usa gráficas intel."
 tags: [Fix, Linux Mint]
 ---
 
