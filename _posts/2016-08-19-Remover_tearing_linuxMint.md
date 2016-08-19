@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Remover \"Tearing\" do Linux Mint/Ubuntu!"
-description: "Como remover as linhas(Tearing) dos vídeos..."
+description: "Como resolver o problema das linhas verticais, que se apresentam nos vídeos nas placas gráficas intel."
 tags: [Fix, Linux Mint]
 ---
 
@@ -21,26 +21,32 @@ Fiz várias pesquisas na Internet, mas não encontrei algo que fosse realmente f
 
 Começamos por remover o gpu-manager do arranque.
 
-~~~bash
-sudo nano /etc/default/grub
+<i class="fa fa-terminal" aria-hidden="true">Terminal</i>
+
+~~~ bash
+emanuelx@terminator ~ $ sudo nano /etc/default/grub
 ~~~
 
 Modificamos a linha!
 
 >GRUB_CMDLINE_LINUX_DEFAULT="quiet splash **nogpumanager**"
 
-~~~bash
-sudo update-grub
+<i class="fa fa-terminal" aria-hidden="true">Terminal</i>
+
+~~~ bash
+emanuelx@terminator ~ $ sudo update-grub
 ~~~
 
 O ficheiro xorg criado pelo gpu-manager já tem quase a configuração toda, é só fazer algumas alterações.
 
 ####Nvidia
+<i class="fa fa-terminal" aria-hidden="true">Terminal</i>
+
 ~~~bash
-sudo -s
-cd /etc/X11/
-cp xorg.conf.08192016 xorg.conf.nvidia
-nano xorg.conf.nvidia
+emanuelx@terminator ~ $ sudo -s
+emanuelx@terminator ~ $ cd /etc/X11/
+emanuelx@terminator ~ $ cp xorg.conf.08192016 xorg.conf.nvidia
+emanuelx@terminator ~ $ nano xorg.conf.nvidia
 ~~~
 
 **É só adicionar o que está em falta!**
@@ -68,13 +74,16 @@ EndSection
 
 ###Intel
 
-~~~
-echo -e 'Section "Device"\n Identifier "Intel Graphics"\n Driver "Intel"\n Option "AccelMethod" "sna"\n Option "TearFree" "true"\nEndSection' | sudo tee /etc/X11/xorg.conf.d/20-intel.conf.bak
+<i class="fa fa-terminal" aria-hidden="true">Terminal</i>
+
+~~~ bash
+emanuelx@terminator ~ $ echo -e 'Section "Device"\n Identifier "Intel Graphics"\n Driver "Intel"\n Option "AccelMethod" "sna"\n Option "TearFree" "true"\nEndSection' | sudo tee /etc/X11/xorg.conf.d/20-intel.conf.bak
 ~~~
 
 ###Script :)
 
 Agora o script, que faz o resto da magia!
+
 
 ~~~bash
 #!/bin/bash
@@ -130,8 +139,8 @@ fi
 ####Utilização
 
 ~~~bash
-chmod +x intel_nvidia.sh
+emanuelx@terminator ~ $ chmod +x intel_nvidia.sh
 
-./intel_nvidia.sh intel --> para mudar para a intel
-./intel_nvidia.sh nvidia --> para mudar para a nvidia
+emanuelx@terminator ~ $ ./intel_nvidia.sh intel --> para mudar para a intel
+emanuelx@terminator ~ $ ./intel_nvidia.sh nvidia --> para mudar para a nvidia
 ~~~
