@@ -1,0 +1,76 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <meta name="apple-mobile-web-app-capable" content="yes"> <meta http-equiv="X-UA-Compatible" content="IE=edge"> <meta name="viewport" content="width=device-width, initial-scale=1"> <title> Remover &quot;Tearing&quot; do Linux Mint/Ubuntu! | Blogspace </title> <meta name="description" content=" Como resolver o problema das linhas verticais, que se apresentam nos vídeos quando se usa gráficas intel. "> <meta name="keywords" content="Jekyll, theme, free, download, SEO, blog, web, minimalist, thinkspace"> <meta name="HandheldFriendly" content="True"> <meta name="MobileOptimized" content="320"> <!-- Social: Facebook / Open Graph --> <meta property="og:type" content="article"> <meta property="article:author" content="Emanuel Lopes"> <meta property="article:section" content=""> <meta property="article:tag" content=""> <meta property="article:published_time" content="2016-08-19 00:00:00 +0100"> <meta property="og:url" content="https://emanuellopes.github.io//2016/Remover_tearing_linuxMint/"> <meta property="og:title" content=" Remover &quot;Tearing&quot; do Linux Mint/Ubuntu! | Blogspace "> <meta property="og:image" content="https://emanuellopes.github.io/"> <meta property="og:description" content=" Como resolver o problema das linhas verticais, que se apresentam nos vídeos quando se usa gráficas intel. "> <meta property="og:site_name" content="Emanuel Lopes"> <meta property="og:locale" content="pt_PT"> <!-- rel prev and next --> <link rel="stylesheet" href="/assets/css/main.css"> <link rel="stylesheet" href="/assets/css/font-awesome.min.css"> <!-- Canonical link tag --> <link rel="canonical" href="https://emanuellopes.github.io//2016/Remover_tearing_linuxMint/"> <link rel="alternate" type="application/rss+xml" title="Blogspace" href="https://emanuellopes.github.io//feed.xml"> <script type="text/javascript"> var disqus_shortname = ''; var _gaq = _gaq || []; _gaq.push(['_setAccount', 'UA-36251915-2']); _gaq.push(['_trackPageview']); (function() { var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true; ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js'; var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s); })(); </script> </head> <body> <main class="wrapper"> <header class="site-header"> <nav class="nav"> <div class="container"> <h1 class="logo"><a href="/">Blog<span>space</span></a></h1> <img src="/assets/images/newicon.png" width="50"> <ul class="navbar"> <li><a href="/feed.xml" target="_blank">RSS</a></li> </ul> </div> </nav> </header> <article class="post container" itemscope itemtype="http://schema.org/BlogPosting"> <header class="post-header"> <p class="post-meta"><time datetime="2016-08-19T00:00:00+01:00" itemprop="datePublished">Aug 19, 2016</time> <div class="clearfix"></div> <a class="post-tag">Fix</a> <a class="post-tag">Linux Mint</a> <h1 class="post-title" itemprop="name headline">Remover "Tearing" do Linux Mint/Ubuntu!</h1> </header> <div class="post-content" itemprop="articleBody"> <p>Um dos problemas que tenho tido no Linux é relativamente às placas gráficas, principalmente em portáteis, pois têm aqueles sistema Híbrido (duas Gráficas).</p> <p>No Arch linux quando usava o bumblebee, consegui resolver através do xorg.conf, adicionando umas linhas extras na configuração da placa Intel.</p> <p>Aqui no Mint é um pouco diferente, pois tenho usado o sistema PRIME de nvidia, este sistema vêm com uma aplicação que se chama gpu-manager, esta aplicação irá sempre rescrever o xorg.conf sempre que alternarmos as gráficas, o problema em questão é que ele remove as opções que permite remover o tearing dos vídeos.</p> <div class="divider"></div> <h2 id="soluo">Solução</h2> <p>Fiz várias pesquisas na Internet, mas não encontrei algo que fosse realmente funcional, então fiz um pequeno script para resolver o problema.</p> <h3 id="abrimos-o-terminal-">Abrimos o terminal :)</h3> <p>Começamos por remover o gpu-manager do arranque.</p> <p><i class="fa fa-terminal" aria-hidden="true">Terminal</i></p> <div class="highlighter-rouge"><pre class="highlight"><code>emanuelx@terminator ~ <span class="nv">$ </span>sudo nano /etc/default/grub
+</code></pre></div> <p>Modificamos a linha!</p> <blockquote> <p>GRUB_CMDLINE_LINUX_DEFAULT=”quiet splash <strong>nogpumanager</strong>”</p> </blockquote> <p><i class="fa fa-terminal" aria-hidden="true">Terminal</i></p> <div class="highlighter-rouge"><pre class="highlight"><code>emanuelx@terminator ~ <span class="nv">$ </span>sudo update-grub
+</code></pre></div> <p>O ficheiro xorg criado pelo gpu-manager já tem quase a configuração toda, é só fazer algumas alterações.</p> <h4 id="nvidia">Nvidia</h4> <p><i class="fa fa-terminal" aria-hidden="true">Terminal</i></p> <div class="highlighter-rouge"><pre class="highlight"><code>emanuelx@terminator ~ <span class="nv">$ </span>sudo -s
+emanuelx@terminator ~ <span class="nv">$ </span><span class="nb">cd</span> /etc/X11/
+emanuelx@terminator ~ <span class="nv">$ </span>cp xorg.conf.08192016 xorg.conf.nvidia
+emanuelx@terminator ~ <span class="nv">$ </span>nano xorg.conf.nvidia
+</code></pre></div> <p><strong>É só adicionar o que está em falta!</strong></p> <div class="highlighter-rouge"><pre class="highlight"><code>Section "Device"
+    Identifier "intel"
+    Driver "modesetting"
+    BusID "PCI:0@0:2:0"
+    Option "AccelMethod" "sna"
+    Option "TearFree" "True"
+    Option "SwapbuffersWait" "True"
+EndSection
+
+Section "Device"
+    Identifier "nvidia"
+    Driver "nvidia"
+    BusID "PCI:1@0:0:0"
+    Option "ConstrainCursor" "off"
+    Option "CoolBits" "1"
+    Option "NoLogo" "True"
+    Option "TripleBuffer" "True"
+EndSection
+</code></pre></div> <h3 id="intel">Intel</h3> <p><i class="fa fa-terminal" aria-hidden="true">Terminal</i></p> <div class="highlighter-rouge"><pre class="highlight"><code>emanuelx@terminator ~ <span class="nv">$ </span><span class="nb">echo</span> -e <span class="s1">'Section "Device"\n Identifier "Intel Graphics"\n Driver "Intel"\n Option "AccelMethod" "sna"\n Option "TearFree" "true"\nEndSection'</span> | sudo tee /etc/X11/xorg.conf.d/20-intel.conf.bak
+</code></pre></div> <h3 id="script-">Script :)</h3> <p>Agora o script, que faz o resto da magia!</p> <div class="highlighter-rouge"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
+
+<span class="c"># Make sure only root can run our script</span>
+<span class="k">if</span> <span class="o">[[</span> <span class="nv">$EUID</span> -ne 0 <span class="o">]]</span>; <span class="k">then
+   </span><span class="nb">echo</span> <span class="s2">"This script must be run as root"</span> 1&gt;&amp;2
+   <span class="nb">exit </span>1
+<span class="k">fi
+if</span> <span class="o">[</span> <span class="nv">$# </span>-eq 0 <span class="o">]</span>
+  <span class="k">then
+  	</span><span class="nb">echo</span> <span class="s2">"use intel_prime.sh [intel| nvidia]"</span>;
+    <span class="nb">exit </span>1;
+<span class="k">fi
+
+if</span> <span class="o">[</span> <span class="nv">$1</span> <span class="o">==</span> <span class="s2">"nvidia"</span> <span class="o">]</span> ; <span class="k">then
+	</span><span class="nb">echo</span> <span class="s2">"Changing to nvidia..."</span>;
+	<span class="nb">echo</span> <span class="s2">"update xorg.conf..."</span>;
+
+	<span class="k">if</span> <span class="o">[</span> ! -f /etc/X11/xorg.conf.nvidia <span class="o">]</span>; <span class="k">then
+    	</span><span class="nb">echo</span> <span class="s2">"xorg.conf.nvidia not found exit script..."</span>;
+    	<span class="nb">exit </span>1;
+	<span class="k">fi
+
+	</span>cp /etc/X11/xorg.conf.nvidia /etc/X11/xorg.conf
+	<span class="nb">echo</span> <span class="s2">"delete 20-intel.conf..."</span>;
+
+	<span class="k">if</span> <span class="o">[</span> -f /etc/X11/xorg.conf.d/20-intel.conf <span class="o">]</span>; <span class="k">then
+    	</span>rm /etc/X11/xorg.conf.d/20-intel.conf
+	<span class="k">fi
+	</span>prime-select nvidia
+<span class="k">elif</span> <span class="o">[[</span> <span class="nv">$1</span> <span class="o">==</span> <span class="s2">"intel"</span> <span class="o">]]</span>; <span class="k">then
+	</span><span class="nb">echo</span> <span class="s2">"Changing to intel..."</span>;
+	<span class="nb">echo</span> <span class="s2">"delete nvidia xorg.conf..."</span>;
+	<span class="k">if</span> <span class="o">[</span> -f /etc/X11/xorg.conf <span class="o">]</span>; <span class="k">then
+    	</span>rm /etc/X11/xorg.conf
+	<span class="k">fi
+
+	</span><span class="nb">echo</span> <span class="s2">"Update 20-intel.conf ..."</span>;
+	<span class="k">if</span> <span class="o">[</span> ! -f /etc/X11/xorg.conf.d/20-intel.conf.bak <span class="o">]</span>; <span class="k">then
+    	</span><span class="nb">echo</span> <span class="s2">"20-intel.conf.bak not found exit script..."</span>;
+    	<span class="nb">exit </span>1;
+	<span class="k">fi
+    </span>cp /etc/X11/xorg.conf.d/20-intel.conf.bak /etc/X11/xorg.conf.d/20-intel.conf
+    prime-select intel
+<span class="k">else
+	</span><span class="nb">echo</span> <span class="s2">"bad arguments"</span>;
+<span class="k">fi</span>
+</code></pre></div> <div class="divider"></div> <h4 id="utilizao">Utilização</h4> <div class="highlighter-rouge"><pre class="highlight"><code>emanuelx@terminator ~ <span class="nv">$ </span>chmod +x intel_nvidia.sh
+
+emanuelx@terminator ~ <span class="nv">$ </span>./intel_nvidia.sh intel --&gt; para mudar para a intel
+emanuelx@terminator ~ <span class="nv">$ </span>./intel_nvidia.sh nvidia --&gt; para mudar para a nvidia
+</code></pre></div> </div> </article> <footer class="site-footer"> <div class="container"> <small class="block">&copy; 2016 Emanuel Lopes. All rights reserved.</small> <small class="block">Made with <i class="fa fa-heart" aria-hidden="true" style="color:#DD3D36"></i> using <a href="http://jekyllrb.com/">Jekyll</a>. Typeface by <a href="https://www.fontsquirrel.com/fonts/dejavu-sans-mono">DejaVu Sans Mono</a> and <a href="http://fontawesome.io/">Font Awesome</a>.</small> <small>Just a fork of <a href="https://github.com/heiswayi/thinkspace">Thinkspace</a> theme</a>.</small> </div> </footer> </main> </body> </html>
