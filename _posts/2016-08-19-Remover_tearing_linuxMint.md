@@ -15,7 +15,7 @@ Aqui no Mint é um pouco diferente, pois tenho usado o sistema PRIME de nvidia, 
 
 ## Solução
 
-Fiz várias pesquisas na internet, mas não encontrei algo que fosse realmente funcional, então fiz um pequeno script para resolver o problema.
+Fiz várias pesquisas na Internet, mas não encontrei algo que fosse realmente funcional, então fiz um pequeno script para resolver o problema.
 
 ###Abrimos o terminal :)
 
@@ -74,7 +74,7 @@ echo -e 'Section "Device"\n Identifier "Intel Graphics"\n Driver "Intel"\n Optio
 
 ###Script :)
 
-Agora o script que faz o resto da magia!
+Agora o script, que faz o resto da magia!
 
 ~~~bash
 #!/bin/bash
