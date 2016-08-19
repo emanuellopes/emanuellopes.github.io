@@ -40,6 +40,7 @@ emanuelx@terminator ~ $ sudo update-grub
 O ficheiro xorg criado pelo gpu-manager já tem quase a configuração toda, é só fazer algumas alterações.
 
 ####Nvidia
+
 <i class="fa fa-terminal" aria-hidden="true">Terminal</i>
 
 ~~~bash
