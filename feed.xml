@@ -5,8 +5,8 @@
     <description>Just another minimalist Jekyll theme that focuses on technical writing.</description>
     <link>https://emanuellopes.github.io//</link>
     <atom:link href="https://emanuellopes.github.io//feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Thu, 06 Apr 2017 01:36:48 +0100</pubDate>
-    <lastBuildDate>Thu, 06 Apr 2017 01:36:48 +0100</lastBuildDate>
+    <pubDate>Thu, 06 Apr 2017 01:39:08 +0100</pubDate>
+    <lastBuildDate>Thu, 06 Apr 2017 01:39:08 +0100</lastBuildDate>
     <generator>Jekyll v3.0.1</generator>
     
       <item>
@@ -18,8 +18,6 @@
 &lt;h2 id=&quot;exercicios&quot;&gt;Exercicios&lt;/h2&gt;
 
 &lt;p&gt;Devolver o número de vezes que os caracteres ‘A’ e ‘a’ aparecem, no conteúdo codificado, em base 64, do ficheiro /etc/hosts.&lt;/p&gt;
-
-&lt;h3 id=&quot;abrimos-o-terminal-&quot;&gt;Abrimos o terminal :)&lt;/h3&gt;
 
 &lt;p&gt;&lt;i class=&quot;fa fa-terminal&quot; aria-hidden=&quot;true&quot;&gt;Terminal&lt;/i&gt;&lt;/p&gt;
 
