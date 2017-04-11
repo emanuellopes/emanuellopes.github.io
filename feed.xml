@@ -5,8 +5,8 @@
     <description>Just another minimalist Jekyll theme that focuses on technical writing.</description>
     <link>https://emanuellopes.github.io//</link>
     <atom:link href="https://emanuellopes.github.io//feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 11 Apr 2017 12:46:39 +0100</pubDate>
-    <lastBuildDate>Tue, 11 Apr 2017 12:46:39 +0100</lastBuildDate>
+    <pubDate>Tue, 11 Apr 2017 14:32:59 +0100</pubDate>
+    <lastBuildDate>Tue, 11 Apr 2017 14:32:59 +0100</lastBuildDate>
     <generator>Jekyll v3.0.1</generator>
     
       <item>
@@ -41,6 +41,27 @@
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
+&lt;p&gt;Devolver o número de fatores primos do número inteiro 999999999. O utilitário factor&lt;/p&gt;
+&lt;numero&gt; devolve a lista de fatores primos de número. Por exemplo, a execução de factor 2016
+produz a seguinte saída, indicando que tem 8 (oito) fatores primos:
+2016: 2 2 2 2 2 3 3 7
+
+&lt;i class=&quot;fa fa-terminal&quot; aria-hidden=&quot;true&quot;&gt;Terminal&lt;/i&gt;
+
+~~~ bash
+emanuelx@terminator ~ $ factor 999999999 | cut -d&#39;:&#39; -f2 | tr -s &#39; &#39; &#39;\n&#39; | tail -n 6 | wc -l
+~~~
+
+Criar, no diretório /tmp, o ficheiro group.64 que deve ser composto pelo conteúdo do
+ficheiro /etc/group codificado em base 64.
+
+
+&lt;i class=&quot;fa fa-terminal&quot; aria-hidden=&quot;true&quot;&gt;Terminal&lt;/i&gt;
+
+~~~ bash
+emanuelx@terminator ~ $ base64 /etc/group &amp;gt;&amp;gt; /tmp/group.64
+~~~
+&lt;/numero&gt;
 </description>
         <pubDate>Thu, 06 Apr 2017 00:00:00 +0100</pubDate>
         <link>https://emanuellopes.github.io//2017/Bash_alguns_comandos/</link>
