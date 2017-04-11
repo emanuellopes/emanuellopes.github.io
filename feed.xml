@@ -5,8 +5,8 @@
     <description>Just another minimalist Jekyll theme that focuses on technical writing.</description>
     <link>https://emanuellopes.github.io//</link>
     <atom:link href="https://emanuellopes.github.io//feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Thu, 06 Apr 2017 01:39:08 +0100</pubDate>
-    <lastBuildDate>Thu, 06 Apr 2017 01:39:08 +0100</lastBuildDate>
+    <pubDate>Tue, 11 Apr 2017 12:43:48 +0100</pubDate>
+    <lastBuildDate>Tue, 11 Apr 2017 12:43:48 +0100</lastBuildDate>
     <generator>Jekyll v3.0.1</generator>
     
       <item>
@@ -32,6 +32,15 @@
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;emanuelx@terminator ~ &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;sha512sum photo.jpg | cut -d&lt;span class=&quot;s1&quot;&gt;&#39; &#39;&lt;/span&gt; -f1| tr -sd &lt;span class=&quot;s1&quot;&gt;&#39;\n&#39;&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;&#39;&lt;/span&gt; | wc -c
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
+
+&lt;p&gt;O caminho completo para a diretoria atual em codificação base64&lt;/p&gt;
+
+&lt;p&gt;&lt;i class=&quot;fa fa-terminal&quot; aria-hidden=&quot;true&quot;&gt;Terminal&lt;/i&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;emanuelx@terminator ~ &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;pwd&lt;/span&gt; | base64
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
 </description>
         <pubDate>Thu, 06 Apr 2017 00:00:00 +0100</pubDate>
         <link>https://emanuellopes.github.io//2017/Bash_alguns_comandos/</link>
